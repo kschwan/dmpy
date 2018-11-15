@@ -123,7 +123,7 @@ class QuaternionDMP(dmp.DMP):
         omega = quaternion.as_float_array(omega)[:,1:] / dt  # Scale by dt
 
         # Compute desired angular accelerations
-        d_omega = np.gradient(omega, axis=0) / dt
+        d_omega = np.gradient(omega, ts, axis=0)
 
         # Integrate canonical system at time points
         x = self.cs.rollout(ts, tau)
