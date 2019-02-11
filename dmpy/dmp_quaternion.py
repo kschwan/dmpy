@@ -137,8 +137,8 @@ class QuaternionDMP(dmp.DMP):
             return Do_inv.dot(tau**2 * d_omega[j]
                 - self.alpha * (self.beta * (2 * np.log(self.go * quats[j].conjugate())).vec - tau * omega[j]))
 
-        A = np.stack(features(xj) for xj in x)
-        f = np.stack(forcing(j) for j in range(len(ts)))
+        A = np.stack([features(xj) for xj in x])
+        f = np.stack([forcing(j) for j in range(len(ts))])
 
         # Least squares solution for Aw = f (for each column of f)
         self.w = np.linalg.lstsq(A, f, rcond=None)[0].T
