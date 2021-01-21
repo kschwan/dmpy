@@ -1,4 +1,4 @@
-# DMPY
+# DMPy
 Python implementations of Dynamic Motor Primitives.
 
 ## Installation
