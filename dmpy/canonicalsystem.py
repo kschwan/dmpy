@@ -2,8 +2,8 @@ import numpy as np
 
 
 class CanonicalSystem:
-    def __init__(self, alpha):
-        self.alpha = alpha
+    def __init__(self, alpha=None):
+        self.alpha = alpha if alpha is not None else 1.0
         self.step_vectorized = np.vectorize(self.step, otypes=[float])
         self.reset()
 

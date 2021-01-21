@@ -9,7 +9,7 @@ class NDDMP:
         self.n_bfs = n_bfs
         self.alpha = alpha
         self.beta = beta if beta is not None else alpha / 4
-        self.cs = CanonicalSystem(alpha=cs_alpha if cs_alpha is not None else alpha/2)
+        self.cs = CanonicalSystem(alpha=cs_alpha)
 
         # Centres of the Gaussian basis functions
         self.c = np.exp(-self.cs.alpha * np.linspace(0, 1, n_bfs))
