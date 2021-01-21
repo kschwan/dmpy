@@ -1,3 +1,3 @@
 from .canonicalsystem import CanonicalSystem
-from .dmp_position import PositionDMP
-from .dmp_quaternion import QuaternionDMP
+from .dmp_nd import NDDMP
+from .dmp_cartesian import PositionDMP, QuaternionDMP

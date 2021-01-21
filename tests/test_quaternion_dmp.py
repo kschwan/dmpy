@@ -15,8 +15,8 @@ def test1():
 
     dmp = dmpy.QuaternionDMP(25, alpha=48.0, beta=12.0, cs_alpha=2.0)
 
-    dmp.q0 = np.quaternion(0.3717, -0.4993, -0.6162, 0.4825)
-    dmp.go = np.quaternion(0.2471, 0.1797, 0.3182, -0.8974)
+    dmp.q0 = np.normalized(np.quaternion(0.3717, -0.4993, -0.6162, 0.4825))
+    dmp.go = np.normalized(np.quaternion(0.2471, 0.1797, 0.3182, -0.8974))
 
     ts = np.linspace(0, 2, 1000)
     q, omega, domega = dmp.rollout(ts, tau)
