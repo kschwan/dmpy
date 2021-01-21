@@ -64,8 +64,11 @@ class QuaternionDMP:
 
         return self.q, self.omega, self.d_omega
 
-    def rollout(self, ts, tau):
+    def rollout(self, ts, tau=None):
         self.reset()
+
+        if tau is None:
+            tau = ts[-1]
 
         if np.isscalar(tau):
             tau = np.full_like(ts, tau)
@@ -118,6 +121,9 @@ class QuaternionDMP:
         omega = 2 * np.log(np.roll(quats, -1) * quats.conjugate())  # In unit time
         omega[-1] = omega[-2]  # Last element is no good
         omega = quaternion.as_float_array(omega)[:,1:] / dt  # Scale by dt
+
+        # Alternatively: Fit cubic splines to data and integrate them
+        # omega = quaternion.quaternion_time_series.angular_velocity(quats, ts)
 
         # Compute desired angular accelerations
         d_omega = np.gradient(omega, ts, axis=0)

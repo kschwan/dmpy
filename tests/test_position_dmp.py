@@ -35,7 +35,7 @@ if __name__ == '__main__':
     ax3.legend([r'$a_{}$'.format(i) for i in 'xyz'], loc='upper right')
     fig.suptitle('Train trajectory')
 
-    p, dp, ddp = dmp.rollout(ts, ts[-1])
+    p, dp, ddp = dmp.rollout(ts)
     # p, dp, ddp = dmp.rollout(ts, ts[N//2])
 
     fig, (ax1, ax2, ax3) = plt.subplots(3, sharex=True)

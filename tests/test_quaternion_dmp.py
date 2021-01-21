@@ -67,7 +67,7 @@ def test2():
     ax3.legend([r'$\dot\omega_{}$'.format(i) for i in 'xyz'], loc='upper right')
     fig.suptitle('Train trajectory')
 
-    q, omega, domega = dmp.rollout(ts, ts[-1])
+    q, omega, domega = dmp.rollout(ts)
     # q, omega, domega = dmp.rollout(ts, ts[N//2])
 
     # vartau = 40 + 10*np.sin(ts*0.2)

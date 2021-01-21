@@ -45,8 +45,11 @@ class NDDMP:
 
         return self.p, self.dp, self.ddp
 
-    def rollout(self, ts, tau):
+    def rollout(self, ts, tau=None):
         self.reset()
+
+        if tau is None:
+            tau = ts[-1]
 
         if np.isscalar(tau):
             tau = np.full_like(ts, tau)
