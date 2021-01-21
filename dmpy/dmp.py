@@ -1,3 +1,0 @@
-
-class DMP(object):
-    pass

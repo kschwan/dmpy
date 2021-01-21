@@ -1,9 +1,7 @@
-from __future__ import division, print_function
-
 import numpy as np
 
 
-class CanonicalSystem(object):
+class CanonicalSystem:
     def __init__(self, alpha):
         self.alpha = alpha
         self.step_vectorized = np.vectorize(self.step, otypes=[float])

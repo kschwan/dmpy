@@ -1,13 +1,10 @@
-from __future__ import division, print_function
-
 import numpy as np
 import quaternion  # add-on numpy quaternion type (https://github.com/moble/quaternion)
 
-import dmp
-from canonicalsystem import CanonicalSystem
+from .canonicalsystem import CanonicalSystem
 
 
-class QuaternionDMP(dmp.DMP):
+class QuaternionDMP:
     """
 
     [1] A. Ude, B. Nemec, T. Petric, and J. Morimoto, "Orientation in Cartesian

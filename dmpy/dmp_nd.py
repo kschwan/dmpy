@@ -1,12 +1,9 @@
-from __future__ import division, print_function
-
 import numpy as np
 
-import dmp
-from canonicalsystem import CanonicalSystem
+from .canonicalsystem import CanonicalSystem
 
 
-class NDDMP(dmp.DMP):
+class NDDMP:
     def __init__(self, n_dims=1, n_bfs=10, alpha=48.0, beta=None, cs_alpha=None):
         self.n_dims = n_dims
         self.n_bfs = n_bfs
