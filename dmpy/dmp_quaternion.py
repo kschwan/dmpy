@@ -51,7 +51,7 @@ class QuaternionDMP:
     def step(self, x, dt, tau):
         def fo(xj):
             psi = np.exp(-self.h * (xj - self.c)**2)
-            return self.Do.dot(self.w.dot(psi) / psi.sum() * xj)
+            return self.Do @ (self.w @ psi / psi.sum() * xj)
 
         # DMP system acceleration
         self.d_omega = (self.alpha * (self.beta * 2 * np.log(self.go * self.q.conjugate()).vec - tau * self.omega) + fo(x)) / tau**2
@@ -131,8 +131,7 @@ class QuaternionDMP:
             return xj * psi / psi.sum()
 
         def forcing(j):
-            return Do_inv.dot(tau**2 * d_omega[j]
-                - self.alpha * (self.beta * (2 * np.log(self.go * quats[j].conjugate())).vec - tau * omega[j]))
+            return Do_inv @ (tau**2 * d_omega[j] - self.alpha * (self.beta * (2 * np.log(self.go * quats[j].conjugate())).vec - tau * omega[j]))
 
         A = np.stack([features(xj) for xj in x])
         f = np.stack([forcing(j) for j in range(len(ts))])

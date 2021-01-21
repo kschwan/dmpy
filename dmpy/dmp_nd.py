@@ -32,7 +32,7 @@ class NDDMP:
     def step(self, x, dt, tau):
         def fp(xj):
             psi = np.exp(-self.h * (xj - self.c)**2)
-            return self.Dp.dot(self.w.dot(psi) / psi.sum() * xj)
+            return self.Dp @ (self.w @ psi / psi.sum() * xj)
 
         # DMP system acceleration
         self.ddp = (self.alpha * (self.beta * (self.gp - self.p) - tau * self.dp) + fp(x)) / tau**2
@@ -97,8 +97,7 @@ class NDDMP:
             return xj * psi / psi.sum()
 
         def forcing(j):
-            return Dp_inv.dot(tau**2 * dd_p[j]
-                - self.alpha * (self.beta * (self.gp - p[j]) - tau * d_p[j]))
+            return Dp_inv @ (tau**2 * dd_p[j] - self.alpha * (self.beta * (self.gp - p[j]) - tau * d_p[j]))
 
         A = np.stack([features(xj) for xj in x])
         f = np.stack([forcing(j) for j in range(len(ts))])
